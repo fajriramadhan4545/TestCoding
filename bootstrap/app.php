@@ -19,4 +19,17 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*'),
         );
+
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, Request $request) {
+            if ($request->is('api/*')) {
+                if ($e->getPrevious() instanceof \Illuminate\Database\Eloquent\ModelNotFoundException ||
+                    str_contains($e->getMessage(), 'No query results for model')
+                ) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Data tidak ditemukan.'
+                    ], 404);
+                }
+            }
+        });
     })->create();
