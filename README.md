@@ -33,8 +33,8 @@ API berbasis Laravel 11 untuk mendata kapal dan pencatatan log perawatan (mainte
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/<username>/ship-maintenance-api.git
-cd ship-maintenance-api
+git clone https://github.com/fajriramadhan4545/TestCoding.git
+cd TestCoding
 ```
 
 ### 2. Install Dependencies
